@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="canvas_ink">#263D71</color>
+    <color name="navy">#172B50</color>
+    <color name="soft_navy">#2C416A</color>
+    <color name="teal">#0C9F94</color>
+    <color name="teal_light">#DDF7F1</color>
+    <color name="body">#52627B</color>
+    <color name="background">#F3F6FC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="stroke_border">#DDE5F0</color>
+    <color name="gray_light">#F6F8FC</color>
+    <color name="track">#EDF1F7</color>
+    <color name="amber">#C88732</color>
+</resources>

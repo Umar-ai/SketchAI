@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sketch AI</string>
+    <string name="action_predict">Recognize shape</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_undo">Undo</string>
+</resources>

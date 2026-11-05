@@ -1,0 +1,61 @@
+{
+  "dataset": "procedural synthetic line sketches",
+  "classes": [
+    "Circle",
+    "Square",
+    "Triangle",
+    "Star",
+    "Heart"
+  ],
+  "samples_training": 9000,
+  "samples_heldout": 1500,
+  "seed": 20261030,
+  "synthetic_heldout_accuracy": 0.99867,
+  "confusion_matrix_true_rows_predicted_cols": [
+    [
+      299,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      299,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      300,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      300,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      300
+    ]
+  ],
+  "model_tensor_input_shape": [
+    1,
+    1024
+  ],
+  "model_tensor_output_shape": [
+    1,
+    5
+  ],
+  "output_softmax_beta": 0.25,
+  "note": "No real human sketches, Android APK, or device inference evaluated here. Not a real-world accuracy estimate."
+}

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background"
+    android:clipToPadding="false">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:paddingBottom="28dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:background="@drawable/header_gradient"
+            android:paddingStart="24dp" android:paddingEnd="24dp"
+            android:paddingTop="26dp" android:paddingBottom="29dp">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="CREATIVE AI • MINI LAB" android:letterSpacing="0.13"
+                android:textColor="#9DE8DD" android:textStyle="bold" android:textSize="11sp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="SketchAI" android:textColor="@color/white"
+                android:textSize="32sp" android:textStyle="bold" android:layout_marginTop="6dp"/>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Draw it. Recognize it. All on your phone."
+                android:textColor="#D9E6F7" android:textSize="14sp" android:layout_marginTop="4dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="15dp" android:background="@drawable/chip_background"
+                android:paddingStart="12dp" android:paddingEnd="12dp"
+                android:paddingTop="7dp" android:paddingBottom="7dp"
+                android:text="●   OFFLINE · TENSORFLOW LITE"
+                android:textColor="#0D605C" android:textStyle="bold" android:textSize="10sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginTop="18dp" android:background="@drawable/card_surface"
+            android:orientation="vertical" android:padding="16dp" android:elevation="2dp">
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Your drawing board" android:textColor="@color/navy"
+                android:textStyle="bold" android:textSize="20sp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Draw one shape with your finger. Use Undo or Clear to try again."
+                android:textColor="@color/body" android:textSize="12sp" android:layout_marginTop="4dp"
+                android:layout_marginBottom="14dp" />
+
+            <FrameLayout android:layout_width="match_parent" android:layout_height="310dp"
+                android:background="@drawable/canvas_surface" android:clipToOutline="true">
+                <com.umer.sketchai.DrawingView android:id="@+id/drawingView"
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:contentDescription="Drawing canvas for one of five shapes"/>
+            </FrameLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginTop="14dp">
+                <Button android:id="@+id/predictButton" android:layout_width="0dp"
+                    android:layout_height="54dp" android:layout_weight="2.2"
+                    android:background="@drawable/button_primary" android:backgroundTint="@null"
+                    android:text="Recognize" android:textAllCaps="false" android:textStyle="bold"
+                    android:textSize="15sp" android:textColor="@color/white"/>
+                <Button android:id="@+id/undoButton" android:layout_width="0dp"
+                    android:layout_height="54dp" android:layout_weight="1.0"
+                    android:layout_marginStart="8dp" android:background="@drawable/button_secondary"
+                    android:backgroundTint="@null" android:text="Undo" android:textAllCaps="false"
+                    android:textStyle="bold" android:textColor="@color/navy"/>
+                <Button android:id="@+id/clearButton" android:layout_width="0dp"
+                    android:layout_height="54dp" android:layout_weight="1.0"
+                    android:layout_marginStart="8dp" android:background="@drawable/button_secondary"
+                    android:backgroundTint="@null" android:text="Clear" android:textAllCaps="false"
+                    android:textStyle="bold" android:textColor="@color/navy"/>
+            </LinearLayout>
+            <TextView android:id="@+id/statusText" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp"
+                android:gravity="center" android:text="Loading on-device AI model…"
+                android:textColor="@color/body" android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/resultCard" android:visibility="gone"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginTop="15dp" android:background="@drawable/card_surface"
+            android:orientation="vertical" android:padding="18dp" android:elevation="2dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="AI PREDICTION" android:letterSpacing="0.12" android:textSize="11sp"
+                android:textColor="@color/teal" android:textStyle="bold" />
+            <TextView android:id="@+id/predictionTitle" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:text="Circle"
+                android:textSize="28sp" android:textStyle="bold" android:textColor="@color/navy"
+                android:layout_marginTop="5dp" />
+            <TextView android:id="@+id/predictionSubtitle" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:textColor="@color/body"
+                android:textSize="12sp" android:layout_marginTop="2dp" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="MODEL SCORES" android:layout_marginTop="18dp" android:layout_marginBottom="8dp"
+                android:textColor="@color/body" android:textStyle="bold" android:textSize="10sp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginBottom="11dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:text="Circle"
+                        android:textSize="12sp" android:textColor="@color/navy" />
+                    <TextView android:id="@+id/score0" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0%" android:textStyle="bold"
+                        android:textSize="12sp" android:textColor="@color/soft_navy" />
+                </LinearLayout>
+                <ProgressBar android:id="@+id/bar0" android:layout_width="match_parent"
+                    android:layout_height="7dp" android:layout_marginTop="5dp"
+                    android:max="100" android:progress="0" android:progressDrawable="@drawable/score_track"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginBottom="11dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:text="Square"
+                        android:textSize="12sp" android:textColor="@color/navy" />
+                    <TextView android:id="@+id/score1" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0%" android:textStyle="bold"
+                        android:textSize="12sp" android:textColor="@color/soft_navy" />
+                </LinearLayout>
+                <ProgressBar android:id="@+id/bar1" android:layout_width="match_parent"
+                    android:layout_height="7dp" android:layout_marginTop="5dp"
+                    android:max="100" android:progress="0" android:progressDrawable="@drawable/score_track"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginBottom="11dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:text="Triangle"
+                        android:textSize="12sp" android:textColor="@color/navy" />
+                    <TextView android:id="@+id/score2" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0%" android:textStyle="bold"
+                        android:textSize="12sp" android:textColor="@color/soft_navy" />
+                </LinearLayout>
+                <ProgressBar android:id="@+id/bar2" android:layout_width="match_parent"
+                    android:layout_height="7dp" android:layout_marginTop="5dp"
+                    android:max="100" android:progress="0" android:progressDrawable="@drawable/score_track"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginBottom="11dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:text="Star"
+                        android:textSize="12sp" android:textColor="@color/navy" />
+                    <TextView android:id="@+id/score3" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0%" android:textStyle="bold"
+                        android:textSize="12sp" android:textColor="@color/soft_navy" />
+                </LinearLayout>
+                <ProgressBar android:id="@+id/bar3" android:layout_width="match_parent"
+                    android:layout_height="7dp" android:layout_marginTop="5dp"
+                    android:max="100" android:progress="0" android:progressDrawable="@drawable/score_track"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginBottom="11dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="0dp" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:text="Heart"
+                        android:textSize="12sp" android:textColor="@color/navy" />
+                    <TextView android:id="@+id/score4" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="0%" android:textStyle="bold"
+                        android:textSize="12sp" android:textColor="@color/soft_navy" />
+                </LinearLayout>
+                <ProgressBar android:id="@+id/bar4" android:layout_width="match_parent"
+                    android:layout_height="7dp" android:layout_marginTop="5dp"
+                    android:max="100" android:progress="0" android:progressDrawable="@drawable/score_track"
+                    style="?android:attr/progressBarStyleHorizontal" />
+            </LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Model scores are estimates, not calibrated probabilities."
+                android:textColor="@color/body" android:textSize="11sp" android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginStart="20dp" android:layout_marginEnd="20dp"
+            android:layout_marginTop="18dp" android:orientation="vertical">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="What can I recognize?" android:textColor="@color/navy"
+                android:textSize="15sp" android:textStyle="bold"/>
+            <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:scrollbars="none" android:layout_marginTop="10dp">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="○  Circle" android:textSize="12sp" android:textStyle="bold"
+                        android:textColor="@color/soft_navy" android:background="@drawable/button_secondary"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="□  Square" android:textSize="12sp" android:textStyle="bold"
+                        android:textColor="@color/soft_navy" android:background="@drawable/button_secondary"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="△  Triangle" android:textSize="12sp" android:textStyle="bold"
+                        android:textColor="@color/soft_navy" android:background="@drawable/button_secondary"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="☆  Star" android:textSize="12sp" android:textStyle="bold"
+                        android:textColor="@color/soft_navy" android:background="@drawable/button_secondary"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="♡  Heart" android:textSize="12sp" android:textStyle="bold"
+                        android:textColor="@color/soft_navy" android:background="@drawable/button_secondary"
+                        android:paddingStart="12dp" android:paddingEnd="12dp"
+                        android:paddingTop="10dp" android:paddingBottom="10dp"
+                        android:layout_marginEnd="8dp"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Educational model trained on synthetic sketches. It may struggle with unusual drawings. Keep one shape centered on the canvas."
+                android:textSize="12sp" android:lineSpacingExtra="2dp"
+                android:textColor="@color/body" android:layout_marginTop="14dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
